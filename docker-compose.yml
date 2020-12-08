@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  spring-runner:
+    build: ./app
+    ports:
+      - 8080:8080
+    environment:
+      - POSTGRES_DOMAIN=demo-db
+    container_name: spring-runner
+    depends_on: 
+      - demo-db
+  
+  demo-db:
+    image: postgres
+    ports:
+      - 5431:5432
+    environment:
+      - POSTGRES_DB=demo
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+    container_name: demo-db
+    volumes:
+      - "demodb-data:/var/lib/postgresql/data"
+
+volumes:
+  demodb-data:

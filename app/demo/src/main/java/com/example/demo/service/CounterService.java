@@ -29,8 +29,14 @@ public class CounterService {
     }
 
     public Counter findOne() {
-        return counterRepository.findById(1L)
-                .orElseThrow(() -> new NotFoundException("Could not retrieve counter!"));
+        Counter counter = counterRepository.findById(1L).orElse(null);
+
+        if (counter == null) {
+            counter = new Counter(0);
+            counterRepository.save(counter);
+        }
+
+        return counter;
     }
 
 }

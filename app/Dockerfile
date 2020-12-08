@@ -13,8 +13,6 @@ WORKDIR /app/target
 
 COPY --from=builder /app/target .
 
-ENV POSTGRES_DOMAIN demo-db
-
 EXPOSE 8080
  
 CMD java -jar demo-0.0.1-SNAPSHOT.jar
