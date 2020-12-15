@@ -7,6 +7,10 @@ services:
       - 8080:8080
     environment:
       - POSTGRES_DOMAIN=demo-db
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=demo
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
     container_name: spring-runner
     depends_on: 
       - demo-db
