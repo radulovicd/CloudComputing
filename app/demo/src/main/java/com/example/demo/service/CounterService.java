@@ -14,6 +14,9 @@ public class CounterService {
     @Value("${spring.datasource.username}")
     private String envVariable;
 
+    @Value("${nginx.proxy}")
+    private String envHost;
+
     private CounterRepository counterRepository;
 
     @Autowired
@@ -25,7 +28,7 @@ public class CounterService {
         Counter counter = findOne();
         counter.setTimesVisited(counter.getTimesVisited() + 1);
         counter = counterRepository.save(counter);
-        return "Times visited: " + counter.getTimesVisited() + "<br/>Env variable: " + envVariable;
+        return "Times visited: " + counter.getTimesVisited() + "<br/>Env variable: " + envVariable + "<br/>HOST: " + envHost;
     }
 
     public Counter findOne() {
