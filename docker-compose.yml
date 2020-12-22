@@ -16,7 +16,7 @@ services:
       - demo-db
   
   demo-db:
-    image: postgres
+    image: postgres:13
     ports:
       - 5431:5432
     environment:

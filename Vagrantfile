@@ -12,7 +12,11 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "hashicorp/bionic64"
+  config.vm.provision "file", source: "app", destination: "cloud/app"
+  config.vm.provision "file", source: "docker-compose.yml", destination: "cloud/docker-compose.yml"
+  config.vm.network "forwarded_port", guest: 8080, host: 8080
+  config.vm.network "forwarded_port", guest: 5431, host: 5431
   config.vm.provision :shell, path: "script.sh"
 
   # Disable automatic box update checking. If you disable this, then
